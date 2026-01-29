@@ -1,8 +1,9 @@
 # LeetCode Algorithm Solutions
 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
-![Progress](https://img.shields.io/badge/Solutions-150+-green.svg)
-![Last Commit](https://img.shields.io/badge/Last%20Commit-Jan%2029%202026-orange.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/wunaiqiezixin/Leetcode_Algorithm)
+![GitHub repo size](https://img.shields.io/github/repo-size/wunaiqiezixin/Leetcode_Algorithm)
+![GitHub issues](https://img.shields.io/github/issues/wunaiqiezixin/Leetcode_Algorithm)
 
 ## 📖 项目简介
 
