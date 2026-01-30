@@ -13,7 +13,7 @@
 ## 🎯 内容说明
 
 ### Algorithm 目录
-- **来源**: [MOOC郭伟老师的《程序设计（二）算法基础课》](https://www.icourse163.org/learn/PKU-1001894005?tid=1474167486#/learn/announce)
+- **来源**: [MOOC郭炜老师的《程序设计（二）算法基础课》](https://www.icourse163.org/learn/PKU-1001894005?tid=1474167486#/learn/announce)
 - **内容**: 算法基础知识、经典算法实现、编程思想
 - **特点**: 系统性的算法学习路径，适合算法入门和巩固
 
