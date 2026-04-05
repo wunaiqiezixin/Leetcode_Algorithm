@@ -1,0 +1,63 @@
+# 496. 下一个更大元素 I
+[力扣题目链接](https://leetcode.cn/problems/next-greater-element-i/description/)
+
+>单调栈
+
+## 思路
+维护一个单调栈，小的元素靠近栈顶  
+从后往前遍历数组，因为我们要求的是下一个更大的元素，所以我们要先遍历过当前元素的所有的后面的元素，  
+并用栈存放可能比当前元素大的所有元素，我们才能求出当前元素大下一个更大的元素  
+每遍历到一个元素，我们就尝试到栈中找比它大的元素，因为栈中存放着所有可能比它大的元素  
+如果当前元素大于等于栈顶元素，说明栈顶元素没有了存在的必要，出栈，  
+最后如果栈不为空，说明栈顶元素即为当前元素的下一个更大的元素  
+如果为空，说明找不到下一个更大的元素，记录为-1  
+
+本题可以先求出`nums2`数组中所有元素的下一个更大的元素，得到`nextGreater`数组  
+再用`unordered_map`做映射  
+即 `first`为'nums2[i]`, `second` 为`nextGreater[i]`  
+最后在开一个长度等于`nums1`的数组，记录所有的`mp[nums1[i]]`即为最终答案  
+
+### ***C++***
+```CPP
+
+```class Solution {
+private:
+    vector<int> nextGreaterElement(vector<int>& nums) /* 函数重载 */
+    {
+        int n = nums.size();
+        vector<int> ans(n, -1);/* 初始化为-1 */
+        stack<int> stk;
+        int i;
+        for (i = n - 1; i >= 0; --i)
+        {
+            /* 在栈中找下一个更大的元素 */
+            while (!stk.empty() && nums[i] >= stk.top())
+                stk.pop();
+            if (!stk.empty())
+                ans[i] = stk.top();/* 找到了 */
+            /* 没有找到默认值为-1 */
+
+            /* 当前元素入栈 */
+            stk.push(nums[i]);
+        }
+        return ans;
+    }
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        /* 找出nums2中所有元素的下一个更大的元素 */
+        vector<int> nextGreater = nextGreaterElement(nums2);
+        /* 用unordered_map(哈希表) 做映射 */
+        unordered_map<int, int> mp;
+        int i;
+        for (i = 0; i < nums2.size(); ++i)
+        {
+            mp[nums2[i]] = nextGreater[i];
+        }
+        vector<int> ans(nums1.size(), -1); /* 最终答案 */
+        for (i = 0; i < nums1.size(); ++i)
+        {
+            ans[i] = mp[nums1[i]];
+        }
+        return ans;
+    }
+};
