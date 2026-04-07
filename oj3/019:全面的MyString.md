@@ -2,63 +2,47 @@
 [题目链接](http://cxsjsxmooc.openjudge.cn/2023t3spring/019/)
 
 ---
-# 代码
-```CPP
-#include <cstdlib>
-#include <iostream>
+
+# MyString类 -- 面试问题总结
+### 针对以下代码总结常见面试问题
+```cpp
+#include<iostream>
+#include<cstring>
 using namespace std;
-int strlen(const char * s) 
-{	int i = 0;
-	for(; s[i]; ++i);
-	return i;
-}
-void strcpy(char * d,const char * s)
-{
-	int i = 0;
-	for( i = 0; s[i]; ++i)
-		d[i] = s[i];
-	d[i] = 0;
-		
-}
-int strcmp(const char * s1,const char * s2)
-{
-	for(int i = 0; s1[i] && s2[i] ; ++i) {
-		if( s1[i] < s2[i] )
-			return -1;
-		else if( s1[i] > s2[i])
-			return 1;
-	}
-	return 0;
-}
-void strcat(char * d,const char * s)
-{
-	int len = strlen(d);
-	strcpy(d+len,s);
-}
+
 class MyString
 {
-// 在此处补充你的代码
 private:
     char* p;
 public:
     MyString()
     {
         p = new char[1];
-        p[0] = 0;
-    }
-    MyString(const MyString & S)
-    {
-        p = new char[strlen(S.p) + 1];
-        strcpy(p, S.p);
+        p[0] = '\0';
     }
     MyString(const char* str)
     {
         p = new char[strlen(str) + 1];
         strcpy(p, str);
     }
-    ~MyString() {delete []p;}
-
-    /* 重载赋值运算符 */
+    MyString(const MyString & S)
+    {
+        p = new char[strlen(S.p) + 1];
+        strcpy(p, S.p);
+    }
+    ~MyString()
+    {
+        delete []p;
+    }
+    MyString & operator= (const char* str)
+    {
+        if (p == str)
+            return *this;
+        delete []p;
+        p = new char[strlen(str) + 1];
+        strcpy(p, str);
+        return *this;
+    }
     MyString & operator= (const MyString & S)
     {
         if (this == &S)
@@ -68,100 +52,79 @@ public:
         strcpy(p, S.p);
         return *this;
     }
-    MyString & operator= (const char* str)
+    friend ostream & operator<< (ostream & os, const MyString & S)
     {
-        if (p)
-            delete []p;
-        p = new char[strlen(str) + 1];
-        strcpy(p, str);
-        return *this;
+        os << S.p;
+        return os;
     }
-
-    /* 重载+运算符 */
-    /* string1 + string2 + string3 */
     MyString operator+ (const MyString & S) const
-    //const成员函数才能连续相加
-    {//返回一个"临时对象"
-        MyString temp{};
-        delete []temp.p;
-        temp.p = new char[strlen(S.p) + strlen(p) + 1];
-        strcpy(temp.p, p);
+    {
+        MyString temp(p);
         strcat(temp.p, S.p);
-        return temp;/* 只能将临时对象赋值给const的对象 */
+        return temp;
     }
-    /* string + char* str + char* str */
-    MyString operator+ (const char* str) const 
+    MyString operator+ (const char* str) const
     {
         MyString temp(str);
         return *this + temp;
     }
-    /* char* str + string + string */
     friend MyString operator+ (const char* str, const MyString & S)
     {
         MyString temp(str);
         return temp + S;
     }
-
-    /*  重载 << 运算符 */
-    friend ostream& operator<< (ostream& os, const MyString & S)
-    {
-        os << S.p;
-        return os;
-    }
-
-    /* 重载+= */
     MyString & operator+= (const char* str)
     {
         *this = *this + str;
         return *this;
     }
-
-    /* 重载[] */
-    char& operator[] (int idx)
+    char & operator[] (int idx)
     {
         return p[idx];
     }
-
-    /* 重载 () */
+    char operator[] (int idx) const
+    {
+        return p[idx];
+    }
     MyString operator() (int start, int len)
     {
-        int i;
-        char* sub = new char[len + 1];
-        for (i = 0; i < len; ++i)
-            sub[i] = p[i + start];
-        sub[i] = 0;
-        MyString temp(sub);
+        int size = strlen(p);
+        if (start < 0 || start >= size)
+            return MyString{};
+        int actualLen = start + len - 1 < size ? len : size - start;
+        char* str = new char[actualLen + 1];
+        strncpy(str, p + start, actualLen);
+        str[actualLen] = '\0';
+        MyString temp(str);
+        delete []str;
         return temp;
     }
-    
-    /* 重载比较运算符 */
-    bool operator> (const MyString & S)
+    bool operator> (const MyString & S) const
     {
         return strcmp(p, S.p) > 0;
     }
-    bool operator< (const MyString & S)
+    bool operator< (const MyString & S) const
     {
         return strcmp(p, S.p) < 0;
     }
-    bool operator== (const MyString & S)
+    bool operator== (const MyString & S) const 
     {
         return strcmp(p, S.p) == 0;
     }
-
 };
-
-
+/* qsort()自定义比较函数 */
 int CompareString( const void * e1, const void * e2)
 {
-	MyString * s1 = (MyString * ) e1;
-	MyString * s2 = (MyString * ) e2;
-	if( * s1 < *s2 )
-	return -1;
-	else if( *s1 == *s2)
-	return 0;
-	else if( *s1 > *s2 )
-	return 1;
+    const MyString* s1 = (const MyString*)e1;
+    const MyString* s2 = (const MyString*)e2;
+    if (*s1 > *s2)
+        return 1;
+    else if (*s1 < *s2)
+        return -1;
+    else
+        return 0;
 }
+
 int main()
 {
 	MyString s1("abcd-"),s2,s3("efgh-"),s4(s1);
@@ -195,30 +158,43 @@ int main()
 	return 0;
 }
 ```
----
-# 1. 类的基础封装与内存管理（重中之重）
-### 提问 1：你在 MyString 类中定义了私有成员 char* p，为什么要使⽤动态内存分配？不动态分配（⽐如⽤固定数组）会有什么问题？
 
-### 提问 2：什么是浅拷⻉？什么是深拷⻉？你实现的MyString为什么必须使⽤深拷⻉？结合你的代码说明。
+### 1. 你在 MyString 类中定义了私有成员 char* p ，为什么要使⽤动态内存分配？不动态分配（⽐如⽤固定数组）会有什么问题？  
+>1）使用动态内存分配：可以灵活地根据字符串长度分配内存空间，避免了内存溢出或造成内存大量浪费
+>
+>2）使用固定数组：
+>-  长度受限：字符串过长会造成**内存溢出、程序崩溃**；字符串过短会**大量内存浪费**
+>- 无法灵活地进行**赋值/拼接**：固定数组不能扩容/缩容，赋值拼接操作失效
+>- 对象体积臃肿：每一个对象都会携带一个固定长度的字符数组，内存占用极高
+### 2. 什么是浅拷贝?什么是深拷贝？你的MyString类是如何全面实现深拷贝的？请结合你写的代码说明。
+### 3. 什么是 C++ 的三 / 五法则？你的类符合这个法则吗？
+### 4. 你写的const char*版本的赋值运算符里的自赋值判断if(p == str)，你觉得有问题吗？
+### 5.你实现的赋值运算符 ( operator= ), 为什么要先判断 this == &S ? 不判断会有什么问题？结合代码说明。
+### 6.你的代码中， operator+ 返回值是 MyString , ⽽ operator+= 返回值是 MyString& , 为什么要这样设计？两者的区别是什么？
+### 7.operator<< (输出运算符) 为什么必须重载为友元函数，⽽不能作为MyString 类的成员函数？结合代码说明。
+### 8.你的代码中，为什么要提供 "const char* + MyString" 的全局友元operator+ ? 成员函数 operator+ 不能实现吗？
+### 9.operator () 在这⾥实现什么功能？为什么可以像函数⼀样调⽤？
+### 10. 为什么析构要⽤ delete [] ⽽不是 delete ?
+### 11.qsort 为什么需要你写 CompareString ⽐较函数？
+### 12.你实现的operator+运算符，有没有发现缓冲区溢出的问题？
+### 13.为什么要实现两个版本的赋值运算符重载？
+### 14.为什么要给operator[]实现两个版本？
+### 15.比较运算符后面的const是什么意思？为什么要加？
+### 16.为什么 qsort 的比较函数要写成全局函数？不能写成类的成员函数吗？
+### 17.为什么用strncpy之后还要手动加'\0'？
+### 18.你的析构函数不是虚函数，这会带来什么问题？
+### 19.你的operator+=的实现有没有可以优化的地方？
+### 20.你将成员函数operator+声明为const是为了什么？
+### 21.你为C语言的库函数 qsort() 写的比较函数 CompareString 传入的指针类型是 const void* , 你能结合代码说一下将 const void* 转换为 const MyStirng* 有什么具体的变化吗？
+### 22. 可以把自己写的无参构造函数去掉，用C++默认的吗？
 
-### 提问 3：你实现的赋值运算符（operator=），为什么要先判断this == &S？不判断会有什么问题？结合代码说明。
-
-### 提问 4：你的代码中，operator+ 返回值是MyString，⽽operator+= 返回值是MyString&，为什么要这样设计？两者的区别是什么？
-
-# 2. 运算符重载⾼频考点（⼤⼚重点追问）
-### 提问 1：你的代码中，operator[] 返回char& ⽽不是char，为什么要这样设计？返回char会有什么问题？
-
-### 提问 2：operator<<（输出运算符）为什么必须重载为友元函数，⽽不能作为MyString类的成员函数？结合代码说明。
-
-### 提问 3：你的代码中，为什么要提供“const char* + MyString”的全局友元operator+？成员函数operator+ 不能实现吗？
-### 提问 4：operator () 在这⾥实现什么功能？为什么可以像函数⼀样调⽤？
-# 3. 内存与异常安全（⼤⼚最爱）
-### 提问 10：你的赋值运算符是否异常安全？怎么改进？
-### 提问 11：为什么析构要⽤ delete [] ⽽不是 delete？
-# 四、与 qsort 结合的考点（⾮常⾼频）
-### 提问 12：qsort 为什么需要你写 CompareString ⽐较函数？
-### 提问 13：⽐较运算符 < / == / > 为什么建议加 const？
-# 五、经典陷阱题（⾯试官最爱挖坑）
-### 提问 14：默认构造函数为什么初始化为空串⽽不是 nullptr？
-### 提问 15：如果不写拷⻉构造函数，会发⽣什么？
-### 提问 16：连续赋值 s1 = s2 = s3 为什么能成⽴？
+### 23. 你的类现在支持移动语义吗？怎么添加？有什么好处？
+### 24. 你了解小字符串优化（SSO）吗？你的类可以怎么用它来优化？
+### 25. 什么是拷贝和交换惯用法？用它来实现赋值运算符有什么好处？
+### 26. 你了解写时复制（COW）吗？为什么现在很少用了？
+### 27. 赋值运算符为什么要返回MyString&引用？不能返回值吗？
+## RAII
+### 1. 你了解 RAII 吗？你能默写出 RAII 的英文全称吗？你的 MyString 类是不是用到了 RAII？
+### 2. 如果不用 RAII，手动管理这个字符串的内存，会有什么问题？
+### 3. 你的 MyString 类的拷贝操作，和 RAII 有什么关系？
+### 4. RAII 只能用来管理堆内存吗？
