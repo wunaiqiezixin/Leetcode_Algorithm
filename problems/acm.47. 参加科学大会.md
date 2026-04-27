@@ -62,3 +62,69 @@ int main()
     return 0;
 }
 ```
+
+
+### 堆优化
+>加油，相信自己可以去到自己想去到的地方  
+>相信自己可以过上平淡的生活
+
+>2026-4-27
+
+```CPP
+#include <iostream>
+#include <vector>
+#include <list>
+#include <climits>
+#include <queue>
+using namespace std;
+class comparison
+{
+public:
+    bool operator() (const pair<int, int>& p1, const pair<int, int>& p2) const
+    {
+        return p1.second > p2.second;
+    }
+};
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, m;
+    cin >> n >> m;
+    struct Edge{int to; int val;Edge(int a, int b): to(a), val(b){}};
+    vector<list<Edge> > grid(n + 1);
+    vector<bool> visited(n + 1, false);
+    while (m --)
+    {
+        int s, t, val;
+        cin >> s >> t >> val;
+        grid[s].push_back(Edge{t, val});
+    }
+    int start = 1, end = n;
+    priority_queue<pair<int, int>, vector<pair<int, int> >, comparison> pq;//节点，距离源点的最近距离
+    pq.push({1, 0});
+    vector<int> minDist(n + 1, INT_MAX);
+    minDist[1] = 0;
+    while (!pq.empty())
+    {
+        auto cur = pq.top();pq.pop();
+        visited[cur.first] = true;
+        for (Edge edge : grid[cur.first])
+        {
+            if (!visited[edge.to] && edge.val + cur.second < minDist[edge.to])
+            {
+                minDist[edge.to] = edge.val + cur.second;
+                pq.push({edge.to, minDist[edge.to]});
+            }
+        }
+    }
+    if (minDist[end] == INT_MAX)
+        cout << -1 << '\n';
+    else 
+        cout << minDist[end] << '\n';
+    return 0;
+}
+```
+
+### 笨拙的走，总有一天能走到的
+### 好好的
