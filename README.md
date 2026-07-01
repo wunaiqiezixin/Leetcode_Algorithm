@@ -37,7 +37,7 @@ leetcode-algorithm/
 > 点击展开查看各分类题解。
 
 <details>
-<summary><b>🔑 哈希表</b> — 哈希计数、分组</summary>
+<summary><b>哈希表</b> — 哈希计数、分组</summary>
 
 - [0001 两数之和](./problems/0001.两数之和.md)
 - [0202 快乐数](./problems/0202.%20快乐数.md)
@@ -49,7 +49,7 @@ leetcode-algorithm/
 </details>
 
 <details>
-<summary><b>👉 数组与双指针</b> — 排序+双指针、快慢指针、模拟、KMP</summary>
+<summary><b>数组与双指针</b> — 排序+双指针、快慢指针、模拟、KMP</summary>
 
 - [0015 三数之和](./problems/0015.%20三数之和.md)
 - [0018 四数之和](./problems/0018.%20四数之和.md)
@@ -70,7 +70,7 @@ leetcode-algorithm/
 </details>
 
 <details>
-<summary><b>🔍 二分查找</b> — 左右边界二分、平方根、标准模板</summary>
+<summary><b>二分查找</b> — 左右边界二分、平方根、标准模板</summary>
 
 - [0034 在排序数组中查找元素的第一个和最后一个位置](./problems/0034.%20在排序数组中查找元素的第一个和最后一个位置.md)
 - [0069 x 的平方根](./problems/0069.x的平方根.md)
@@ -80,7 +80,7 @@ leetcode-algorithm/
 </details>
 
 <details>
-<summary><b>🪟 滑动窗口</b> — 滑动窗口+哈希、单调队列</summary>
+<summary><b>滑动窗口</b> — 滑动窗口+哈希、单调队列</summary>
 
 - [0076 最小覆盖子串](./problems/0076.%20最小覆盖子串.md)
 - [0209 长度最小的子数组](./problems/0209.%20长度最小的子数组.md)
@@ -90,7 +90,7 @@ leetcode-algorithm/
 </details>
 
 <details>
-<summary><b>📦 栈与队列</b> — 栈匹配、单调栈、双栈模拟</summary>
+<summary><b>栈与队列</b> — 栈匹配、单调栈、双栈模拟</summary>
 
 - [0020 有效的括号](./problems/0020.%20有效的括号.md)
 - [0150 逆波兰表达式求值](./problems/0150.%20逆波兰表达式求值.md)
@@ -105,7 +105,7 @@ leetcode-algorithm/
 </details>
 
 <details>
-<summary><b>🔗 链表</b> — 双指针、虚拟头节点、快慢指针</summary>
+<summary><b>链表</b> — 双指针、虚拟头节点、快慢指针</summary>
 
 - [0019 删除链表的倒数第 N 个结点](./problems/0019.%20删除链表的倒数第%20N%20个结点.md)
 - [0023 合并 K 个升序链表](./problems/0023.%20合并%20K%20个升序链表.md)
@@ -121,7 +121,7 @@ leetcode-algorithm/
 </details>
 
 <details>
-<summary><b>🌳 二叉树</b> — 递归遍历、BFS、BST、回溯、树形贪心</summary>
+<summary><b>二叉树</b> — 递归遍历、BFS、BST、回溯、树形贪心</summary>
 
 - [0094 二叉树的中序遍历](./problems/0094.%20二叉树的中序遍历.md)
 - [0100 相同的树](./problems/0100.%20相同的树.md)
@@ -163,7 +163,7 @@ leetcode-algorithm/
 </details>
 
 <details>
-<summary><b>🔙 回溯算法</b> — 组合、子集、排列、分割、N皇后</summary>
+<summary><b>回溯算法</b> — 组合、子集、排列、分割、N皇后</summary>
 
 - [0017 电话号码的字母组合](./problems/0017.%20电话号码的字母组合.md)
 - [0039 组合总和](./problems/0039.%20组合总和.md)
@@ -180,7 +180,7 @@ leetcode-algorithm/
 </details>
 
 <details>
-<summary><b>💰 贪心算法</b> — 区间贪心、覆盖范围、排序分配</summary>
+<summary><b>贪心算法</b> — 区间贪心、覆盖范围、排序分配</summary>
 
 - [0045 跳跃游戏 II](./problems/0045.%20跳跃游戏%20II.md)
 - [0121 买卖股票的最佳时机](./problems/0121.%20买卖股票的最佳时机.md)
@@ -198,7 +198,7 @@ leetcode-algorithm/
 </details>
 
 <details>
-<summary><b>📐 动态规划</b> — 背包、股票、打家劫舍、子序列、路径、字符串</summary>
+<summary><b>动态规划</b> — 背包、股票、打家劫舍、子序列、路径、字符串</summary>
 
 - [0042 接雨水](./problems/0042.%20接雨水.md)
 - [0053 最大子数组和](./problems/0053.%20最大子数组和.md)
@@ -228,7 +228,7 @@ leetcode-algorithm/
 </details>
 
 <details>
-<summary><b>🗺️ 图论与 ACM 模式</b> — DFS/BFS、最短路、最小生成树、并查集、岛屿</summary>
+<summary><b>图论与 ACM 模式</b> — DFS/BFS、最短路、最小生成树、并查集、岛屿</summary>
 
 - [acm.47 参加科学大会](./problems/acm.47.%20参加科学大会.md) — Dijkstra
 - [acm.53 寻宝](./problems/acm.53.%20寻宝.md) — Prim
@@ -251,7 +251,7 @@ leetcode-algorithm/
 </details>
 
 <details>
-<summary><b>📚 基础算法 · algorithm 目录</b> — 枚举、递归、分治、DP 入门</summary>
+<summary><b>基础算法 · algorithm 目录</b> — 枚举、递归、分治、DP 入门</summary>
 
 > 来源：[郭炜老师《程序设计（二）算法基础课》](https://www.icourse163.org/learn/PKU-1001894005?tid=1474167486#/learn/announce)
 
@@ -293,7 +293,7 @@ leetcode-algorithm/
 </details>
 
 <details>
-<summary><b>🏆 ACM 竞赛模式 · acm-mode 目录</b> — 手动输入输出</summary>
+<summary><b>ACM 竞赛模式 · acm-mode 目录</b> — 手动输入输出</summary>
 
 - [381 领养宠物](./acm-mode/381.领养宠物.md) — 多指针 + 排序
 - [382 独立匹配的边集](./acm-mode/382.独立匹配的边集.md) — 模拟
@@ -301,7 +301,7 @@ leetcode-algorithm/
 - [多多的登山挑战](./acm-mode/多多的登山挑战.md) — 二分答案 + 动态规划
 - [战力极差的最小值](./acm-mode/战力极差的最小值.md) — 排序 + 滑动窗口
 - [特殊的迷宫](./acm-mode/特殊的迷宫(Dijkstra).md) — Dijkstra + 关键剪枝
-- [答题闯关](./acm-mode/答题闯关.md) — 数学证明 + 统计前后缀 
+- [答题闯关](./acm-mode/答题闯关.md) — 数学证明 + 统计前后缀
 - [金矿采集](./acm-mode/金矿采集.md)  — BFS + 全排列枚举
 
 </details>
@@ -310,7 +310,7 @@ leetcode-algorithm/
 
 <div align="center">
 
-[@wunaiqiezixin](https://github.com/wunaiqiezixin) · MIT License · ⭐ 加油 
+[@wunaiqiezixin](https://github.com/wunaiqiezixin) · 2025-2026 · ⭐ 加油
 
 _aim to computer science_
 
